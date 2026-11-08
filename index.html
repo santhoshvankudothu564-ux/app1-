@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VoiceCart AI | Universal Voice Shopping</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <div class="logo">✦</div>
+      <h1>VoiceCart <span>AI</span></h1>
+      <p>Your voice. Every kind of shopping.</p>
+      <label for="phone">Mobile number</label>
+      <div class="phone-row">
+        <span>+91</span>
+        <input id="phone" type="tel" maxlength="10"
+          placeholder="9876543210" />
+      </div>
+      <button id="continueBtn" class="primary full">
+        Continue
+      </button>
+      <p class="small-note">
+        Prototype login screen. Real SMS OTP authentication
+        requires secure backend configuration.
+      </p>
+    </div>
+  </div>
+
+  <div id="appScreen" class="app hidden">
+    <aside class="sidebar">
+      <div class="brand">✦ VoiceCart <span>AI</span></div>
+      <button class="nav active" data-view="home">⌕ Discover</button>
+      <button class="nav" data-view="history">◷ Search History</button>
+      <button class="nav" data-view="profile">♙ My Profile</button>
+      <button class="nav" data-view="wishlist">♡ Wishlist</button>
+      <div class="sidebar-bottom">
+        <button id="logoutBtn" class="nav">↪ Logout</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="header">
+        <div>
+          <div class="eyebrow">VOICE-FIRST UNIVERSAL ASSISTANT</div>
+          <h1 id="pageTitle">What are you looking for?</h1>
+        </div>
+        <div id="userAvatar" class="avatar">U</div>
+      </header>
+
+      <section id="homeView">
+        <section class="hero">
+          <h2>Just speak what you need.</h2>
+          <p>Search groceries, food, travel, products and services.</p>
+
+          <div class="search-box">
+            <input id="searchInput"
+              placeholder="Try: Find groceries for dinner under ₹500"
+              autocomplete="off" />
+            <button id="searchBtn" aria-label="Search">⌕</button>
+          </div>
+
+          <button id="micBtn" class="mic-button">
+            <span class="mic-icon">🎙</span>
+            <strong id="micLabel">Tap to speak</strong>
+            <small>Voice search · English, Hindi or Telugu*</small>
+          </button>
+          <p id="voiceStatus" class="voice-status"></p>
+        </section>
+
+        <section class="section">
+          <div class="section-heading">
+            <h2>Explore categories</h2>
+            <span>All your needs in one place</span>
+          </div>
+          <div id="categoryGrid" class="category-grid"></div>
+        </section>
+
+        <section class="section">
+          <div class="section-heading">
+            <h2 id="resultsTitle">Search results</h2>
+            <span id="resultCount"></span>
+          </div>
+          <div id="results" class="results">
+            <div class="empty">
+              <div class="empty-icon">✦</div>
+              <h3>Your assistant is ready</h3>
+              <p>Speak or type a shopping request to begin.</p>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section id="historyView" class="hidden">
+        <div class="section-heading">
+          <h2>Recent searches</h2>
+          <button id="clearHistoryBtn" class="secondary">Clear all</button>
+        </div>
+        <div id="historyList" class="panel"></div>
+      </section>
+
+      <section id="profileView" class="hidden">
+        <div class="panel profile-panel">
+          <h2>Your profile</h2>
+          <label>Full name</label>
+          <input id="profileName" placeholder="Enter your name" maxlength="100" />
+
+          <label>Preferred language</label>
+          <select id="profileLanguage">
+            <option value="en-IN">English (India)</option>
+            <option value="hi-IN">Hindi</option>
+            <option value="te-IN">Telugu</option>
+          </select>
+
+          <label>Delivery address (optional)</label>
+          <textarea id="profileAddress" maxlength="500"
+            placeholder="Your delivery address"></textarea>
+
+          <label>Shopping budget (₹, optional)</label>
+          <input id="profileBudget" type="number" min="0"
+            max="10000000" placeholder="e.g. 2000" />
+
+          <h3>Clothing and shoe sizes (optional)</h3>
+          <div class="sizes-grid">
+            <div>
+              <label>Shirt / T-shirt</label>
+              <select id="shirtSize">
+                <option value="">Not selected</option>
+                <option>XS</option><option>S</option><option>M</option>
+                <option>L</option><option>XL</option><option>XXL</option>
+                <option>XXXL</option>
+              </select>
+            </div>
+            <div>
+              <label>Waist / Jeans</label>
+              <select id="waistSize">
+                <option value="">Not selected</option>
+                <option>26</option><option>28</option><option>30</option>
+                <option>32</option><option>34</option><option>36</option>
+                <option>38</option><option>40</option><option>42</option>
+              </select>
+            </div>
+            <div>
+              <label>India shoe size</label>
+              <select id="shoeSize">
+                <option value="">Not selected</option>
+                <option>4</option><option>5</option><option>6</option>
+                <option>7</option><option>8</option><option>9</option>
+                <option>10</option><option>11</option><option>12</option>
+              </select>
+            </div>
+            <div>
+              <label>Fit preference</label>
+              <select id="fitPreference">
+                <option value="">Not selected</option>
+                <option>Regular</option><option>Slim</option>
+                <option>Relaxed</option><option>Oversized</option>
+              </select>
+            </div>
+          </div>
+          <button id="saveProfileBtn" class="primary">Save profile</button>
+          <p id="profileStatus" class="status"></p>
+        </div>
+      </section>
+
+      <section id="wishlistView" class="hidden">
+        <h2>Your wishlist</h2>
+        <div id="wishlistList" class="panel"></div>
+      </section>
+
+      <footer>
+        VoiceCart AI · Prototype · Live prices and bookings require provider APIs
+      </footer>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
